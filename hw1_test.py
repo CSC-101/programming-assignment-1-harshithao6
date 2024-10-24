@@ -1,6 +1,7 @@
 import data
 import hw1
 import unittest
+import math
 
 
 # Write your test cases for each part below.
@@ -14,7 +15,6 @@ import unittest
 
 class TestCases(unittest.TestCase):
 
-    # TODO: look up test coverage :)
     # Part 1
     def test_vowel_count(self):
         input = "hello"
@@ -70,12 +70,18 @@ class TestCases(unittest.TestCase):
         point2 = data.Point(8,5)
         startingRect = data.Rectangle(point1,point2)
         result = hw1.circle_bound(startingRect)
-        expected = data.Circle((6.0,7.0),2.0)
+        expected = data.Circle((6.0,7.0),(math.sqrt(32)))
         self.assertEqual(expected,result)
 
     # Part 8
-
-
+    def test_below_pay_average(self):
+        emp1 = data.Employee("john",50)
+        emp2 = data.Employee("sia", 30)
+        emp3 = data.Employee("laasya", 10)
+        emp4 = data.Employee("Harshi", 10)
+        employees = [emp1,emp2,emp3,emp4]
+        result = hw1.below_pay_average(employees)
+        expected = ["laasya","Harshi"]
 
 
 

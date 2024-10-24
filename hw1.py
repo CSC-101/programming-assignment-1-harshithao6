@@ -1,9 +1,13 @@
 import math
 import data
 
-# Write your functions for each part in the space below.
+#All tests for design recipe is the code for the test cases
 
+# Write your functions for each part in the space below.
 # Part 1
+#purpose: to find the amount of vowels
+# input: a word that is a string
+# output: a counter that is an int
 def vowel_count(word:str)-> int:
     char = list(word)
     vowels = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U"]
@@ -16,9 +20,9 @@ def vowel_count(word:str)-> int:
 
 
 # Part 2
-# Define a function named short_lists that takes one parameter of type list[list[int]]. This function must return a new list
-# consisting of those elements of the input list (in the same order) that are of length 2.
-
+# Purpose: to find a  new list consisting of those elements of the input list (in the same order) that are of length 2.
+# input: an embedded list
+# output: a list with the elements that have a length of 2 in the original list
 def short_lists(new:list[list[int]])->list:
     new_list=[]
     for i in range(len(new)):
@@ -29,11 +33,13 @@ def short_lists(new:list[list[int]])->list:
 
 
 # Part 3
-# Define a function named ascending_pairs that takes one parameter of type list[list[int]]. This function must return a new list
-# with elements (the nested lists) matching those of the input list (in the same order) but such that any nested list of length 2
-# in the result has its elements in ascending order (really, non-descending; i.e., the first element will be less than or equal to
-# the second). The elements of nested lists of length not equal to 2 must remain in the same order as in the input.
 
+#purpose: To find a new list with elements (the nested lists) matching those of the input list (in the same order)
+# but such that any nested list of length 2 in the result has its elements in ascending order
+# input: an embedded list
+# output: a new list with elements (the nested lists) matching those of the input
+# list (in the same order) but such that any nested list of length 2 in the result has
+# its elements in ascending order
 def ascending_pairs(new: list[list[int]]) -> list:
     new_list = []
     for i in range(len(new)):
@@ -53,12 +59,13 @@ def ascending_pairs(new: list[list[int]]) -> list:
 
 
 # Part 4
-# Define a function named add_prices with two parameters each of type Price (defined in the provided files).
-# This function must compute and return the sum of the input prices as a new Price object but initalized such that the number
-# of cents is not above 99. There are multiple valid approaches to the implementation of this function including with or without
-# the use of a conditional statement.
+#Purpose: To find the sum of the input prices as a new Price object but initalized such that the number
+# of cents is not above 99.
 # Your implementation may assume that the prices passed to the function are properly formed such that the cents are within
 # the range 0-99.
+
+#input = 2 price objects
+#output = float with total of the 2 price objects
 
 def add_prices(price1,price2):
     total_cents = price1.cents + price2.cents
@@ -69,11 +76,9 @@ def add_prices(price1,price2):
 
 
 # Part 5
-#Define a function named rectangle_area with one parameter of type Rectangle (defined in the provided files). This function must
-# compute and return the area of the provided rectangle with the assumption that the rectangle is properly axis-aligned (
-# i.e., the top-left corner is above and to the left of the bottom-right corner, the vertical sides of the rectangle are parallel
-# to the y-axis, and the horizontal sides of the rectangle are parallel to the x-axis).
-
+#purpose: return the area of the provided rectangle
+#input: a rectangle object
+#output: area of the rectangle as an int
 def rectangle_area(points: data.Rectangle)-> float:
     y_distance = points.top_left.y-points.bottom_right.y
     x_distance = points.bottom_right.x-points.top_left.x
@@ -81,6 +86,9 @@ def rectangle_area(points: data.Rectangle)-> float:
     return area
 
 # Part 6
+#purpose: to return the titles of books with a specific author
+#input: an author name and a list of book objects
+# output: list of strings
 def books_by_author(author:str,b_list: list[data.Book]):
     return_list = []
     for i in range(len(b_list)):
@@ -91,30 +99,37 @@ def books_by_author(author:str,b_list: list[data.Book]):
 
 
 # Part 7
+#Purpose: to convert a rectangle into a circle
+#input: rectangle object
+#output: circle object
 def circle_bound(fun:data.Rectangle):
     y_distance = (fun.top_left.y - fun.bottom_right.y)/2
     x_distance = (fun.bottom_right.x - fun.top_left.x)/2
     middle_x = fun.top_left.x + x_distance
     middle_y = fun.top_left.y - y_distance
-    pythagX = pow((x_distance*2),2)
-    print(pythagX)
-    pythagY = pow((y_distance*2),2)
-    radius = math.sqrt(pythagX+pythagY)
+    pythagX = math.pow((x_distance*2),2)
+    pythagY = math.pow((y_distance*2),2)
+    radius1 = math.sqrt(pythagX+pythagY)
 
-    return data.Circle((middle_x,middle_y),radius)
+    return data.Circle((middle_x,middle_y),radius1)
+
 
 
 
 # Part 8
-
-def below_pay_average(list: list[data.Employee]):
+#Purpose: find the employees that are payed less than the average salary
+#input: list of employee objects
+#output: list of strings
+def below_pay_average(E_list: list[data.Employee]):
     # find average pay of all employees
     salary = 0
-    for i in list:
-        money = list[i].pay_rate
+    Underpayed =[]
+    for i in range(len(E_list)):
+        money = E_list[i].pay_rate
         salary = salary+money
-    average = salary/len(list)
-    for i in list:
-        if list[i].pay_rate < average:
-            return list[i].name
+    average = salary/len(E_list)
+    for i in range(len(E_list)):
+        if E_list[i].pay_rate < average:
+            Underpayed.append(E_list[i].name)
+    return Underpayed
 
